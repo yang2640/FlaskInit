@@ -3,6 +3,7 @@ from flask import request
 from flask import make_response
 from flask import redirect
 from flask import abort
+from flask import render_template
 from flask_script import Manager
 
 app = Flask(__name__)
@@ -47,6 +48,17 @@ def redirectTest():
 def abort_test():
     abort(404)
     return '<h1>Hello !</h1>'
+
+
+# template for index
+@app.route('/templateTest/')
+def templateIndex():
+    return render_template('index.html')
+
+# template for user
+@app.route('/template/user/<name>')
+def template_user_test(name):
+    return render_template('user.html', name=name)
 
 
 if __name__ == '__main__':
